@@ -1,0 +1,235 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  a:hover {
+    text-decoration: none !important;
+    color: #00B3FF;
+  }
+
+}
+
+// mui style
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  // padding: 2rem;
+  // margin-left: 2rem;
+  justify-content: center;
+
+}
+
+.login_hading {
+
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  margin-bottom: 0.5rem;
+
+
+}
+
+.login_hadin_font {
+  font-weight: 700 !important;
+  color: #34485C;
+  font-family: 'Inter, sans-serif';
+
+}
+
+.login_tital {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  margin-bottom: 1.8rem;
+
+}
+
+.login_tital_font {
+  font-weight: 400;
+  color: #34485C;
+  font-size: 1.1rem !important;
+}
+
+.login_form {
+  width: 50%;
+  margin-bottom: 1rem;
+}
+
+.login_email_icon {
+  color: rgb(102, 102, 102);
+  margin-right: 0.5rem;
+}
+
+.login_email_input {
+  height: 48px;
+
+  
+
+}
+
+
+.login_email_password {
+  color: rgb(102, 102, 102);
+  margin-right: 0.5rem;
+}
+
+.login_email_filed {
+  height: 48px;
+}
+
+.forgate_box {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  margin-top: 0.5rem;
+  margin-bottom: "1.5rem"
+}
+
+.login_buttons {
+  width: 50%;
+  margin-top: 1rem !important;
+  background-color: #00B3FF !important;
+  font-family: Inter, sans-serif !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+
+}
+
+.singup_box {
+  display: flex;
+  justify-content: center;
+  width: 50%
+}
+
+.login_singup {
+  font-weight: 500;
+  color: #34485C;
+  margin-top: 0.5rem !important;
+
+}
+
+.signup_link {
+  color: #00B3FF;
+  text-decoration: none;
+
+
+}
+
+.login_form_pass {
+  width: 50% !important;
+  margin-top: 1rem !important;
+}
+
+.login_forgate {
+  color: #34485C;
+  text-decoration: none;
+}
+
+.email_lable,
+.password_lable {
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  color:
+    #34485C !important;
+  margin-bottom: 0.0rem !important;
+}
+
+// .password_lable{
+//   font-weight: 500 !important;
+//   font-size: 18px !important;
+//   color: 
+//   #34485C !important;
+// }
+
+// logo part
+
+.logo_box {
+  background-color: rgb(54, 140, 221);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_img {
+  width: 40vh;
+}
+
+.column_email {
+  margin-left: 0.2rem;
+  font-size: 1.2rem !important;
+  align-items: center !important;
+  color: gray;
+  font-weight: 100;
+
+
+}
+
+
+@media (max-width:1080px) {
+
+  .login_hadin_font {
+    font-size: 1.5rem !important;
+    ;
+
+  }
+
+  .login_tital_font {
+    font-size: 0.8rem;
+  }
+
+  .login_email_input {
+    height: 2rem !important;
+
+  }
+
+  .login_email_icon {
+    font-size: 1rem !important;
+  }
+
+  .login_email_filed {
+    height: 2rem !important;
+
+  }
+
+  .login_email_password {
+    font-size: 1rem !important;
+  }
+
+  .MuiSvgIcon-root {
+    width: 1rem !important;
+  }
+
+  .login_password_lable {
+    font-size: 0.8rem !important;
+  }
+
+  .login_email_lable {
+    font-size: 0.8rem !important;
+  }
+
+  .alert_password {
+    font-size: 0.7rem !important;
+  }
+
+  .alert_email {
+    font-size: 0.7rem !important;
+  }
+
+  .login_button {
+    font-size: 0.7rem !important;
+  }
+
+  .login_forgate {
+    font-size: 0.8rem;
+  }
+
+  .login_singup {
+    font-size: 0.8rem;
+  }
+}
+
