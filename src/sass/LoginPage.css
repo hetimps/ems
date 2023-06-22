@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: none !important;
 }
 * a:hover {
   text-decoration: none !important;
@@ -55,12 +54,6 @@
 
 .login_email_input {
   height: 48px;
-}
-
-.login_input_bordar {
-  display: flex;
-  align-items: center;
-  border-right: 1px solid rgba(52, 72, 92, 0.2509803922) !important;
 }
 
 .login_email_password {
@@ -187,4 +180,7 @@
   .login_singup {
     font-size: 0.8rem;
   }
-}/*# sourceMappingURL=index.css.map */
+}
+.company_table_row_hight {
+  padding: 0px !important;
+}/*# sourceMappingURL=LoginPage.css.map */

@@ -8,11 +8,9 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
-import { loginuser } from '../redux/Login_slice';
+import { loginuser, userName } from '../redux/Login_slice';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { MainString } from '../string/MainString';
-
-
 
 
 
@@ -39,12 +37,21 @@ export default function Login() {
 
     // localStorage.setItem("token", JSON.stringify(login_token.users))
 
-     
+
     const login_token = useSelector((state) => state.login_user)
 
     console.log(login_token.users);
 
     localStorage.setItem("token", JSON.stringify(login_token.users))
+
+
+    const login_username = useSelector((state) => state.login_user)
+
+    const name = login_username.userName.split('@')[0];
+
+    console.log(name);
+
+    localStorage.setItem("usename", JSON.stringify(name))
 
 
 
@@ -59,28 +66,105 @@ export default function Login() {
     }
 
 
+
+    // const handleform = (e) => {
+
+    //     e.preventDefault()
+
+    //     // console.log(data);
+
+    //     let formIsValid = true;
+    //     const { email, password } = data;
+    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    //     if (!emailRegex.test(email)) {
+    //         setErrors((prevErrors) => ({ ...prevErrors, email: true }));
+    //         formIsValid = false;
+    //     }
+
+    //     if (!password || password.length < 8) { // Added null check for password field
+    //         setErrors((prevErrors) => ({ ...prevErrors, password: true }));
+    //         formIsValid = false;
+    //     }
+
+    //     if (formIsValid) {
+    //         const postData = async () => {
+    //             try {
+    //                 const response = await axios.post(
+    //                     'http://ec2-52-66-67-174.ap-south-1.compute.amazonaws.com:3107/user/login',
+    //                     data
+    //                 );
+
+    //                 if (response.data.message === ' login successfully..') {
+    //                     toast.success(response.data.message, {
+    //                         position: 'top-right',
+    //                         theme: 'light',
+    //                     });
+    //                     navigate("/company")
+
+    //                 } else {
+    //                     toast.error(response.data.message, {
+    //                         position: 'top-right',
+    //                         theme: 'light',
+    //                     });
+    //                     navigate("/login")
+    //                 }
+
+
+    //                 console.log(response.data.result.email)
+
+    //                 dispatch(userName(response.data.result.email))
+
+    //                 dispatch(loginuser(response.data.token));
+
+
+
+    //                 // localStorage.setItem("token", JSON.stringify(response.data.token))
+
+    //                 // console.log('Response:', response);
+
+
+    //             } catch (error) {
+    //                 console.error('Error:', error);
+    //             }
+
+    //         };
+    //         postData();
+
+    //     }
+
+    // }
+
     const handleform = (e) => {
-
-        e.preventDefault()
-        console.log(data);
-
+        e.preventDefault();
 
         let formIsValid = true;
         const { email, password } = data;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (!emailRegex.test(email)) {
-            setErrors((prevErrors) => ({ ...prevErrors, email: true }));
+        if (!email) {
+            setErrors((prevErrors) => ({ ...prevErrors, email: 'Email is required' }));
             formIsValid = false;
+        } else if (!emailRegex.test(email)) {
+            setErrors((prevErrors) => ({ ...prevErrors, email: 'Please enter a valid email address' }));
+            formIsValid = false;
+        } else {
+            setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
         }
 
-        if (!password || password.length < 8) { // Added null check for password field
-            setErrors((prevErrors) => ({ ...prevErrors, password: true }));
+        if (!password) {
+            setErrors((prevErrors) => ({ ...prevErrors, password: 'Password is required' }));
             formIsValid = false;
+        } else if (password.length < 8) {
+            setErrors((prevErrors) => ({ ...prevErrors, password: 'Password must be at least 8 characters long' }));
+            formIsValid = false;
+        } else {
+            setErrors((prevErrors) => ({ ...prevErrors, password: '' }));
         }
 
         if (formIsValid) {
             const postData = async () => {
+                
                 try {
                     const response = await axios.post(
                         'http://ec2-52-66-67-174.ap-south-1.compute.amazonaws.com:3107/user/login',
@@ -92,35 +176,27 @@ export default function Login() {
                             position: 'top-right',
                             theme: 'light',
                         });
-                        navigate("/com")
-
+                        navigate("/company");
                     } else {
                         toast.error(response.data.message, {
                             position: 'top-right',
                             theme: 'light',
                         });
-                        navigate("/login")
+                        navigate("/login");
                     }
 
+                    console.log(response.data.result.email);
+                    dispatch(userName(response.data.result.email));
                     dispatch(loginuser(response.data.token));
-
-
-
-                    // localStorage.setItem("token", JSON.stringify(response.data.token))
-                    
-                    // console.log('Response:', response);
-                    
-
                 } catch (error) {
                     console.error('Error:', error);
                 }
-                
             };
+
             postData();
-
         }
+    };
 
-    }
 
     return (
 
@@ -156,32 +232,45 @@ export default function Login() {
                             {MainString.email_lable}
                         </Typography>
                     </FormLabel>
+
                     <OutlinedInput
+                        placeholder='Enter Email'
+
                         className='login_email_input'
+                        // startAdornment={
+                        //     <>
+
+                        //         <MailOutlineIcon className='login_email_icon' />
+                        //     </>
+                        // }
+
                         startAdornment={
+                            <InputAdornment position="start">
+                                <Box className="login_input_bordar"
 
-                            <>
-                                <MailOutlineIcon className='login_email_icon' />
-
-
-                            </>
-
-
+                                    // display="flex"
+                                    // alignItems="center"
+                                    // borderRight="1px solid gray"
+                                    pr={1}
+                                >
+                                    <MailOutlineIcon className='login_email_icon' />
+                                </Box>
+                            </InputAdornment>
                         }
-
                         id="outlined-adornment-email"
-
-
                         name='email'
-                        
-                        fullWidth 
-
+                        fullWidth
                         value={data.email}
-                        error={errors.email}
-                        onChange={handlechange} />
+                        error={errors.email}  // Pass the error state for the email field
+                        onChange={handlechange}
+                        helperText={errors.email}  // Display the error message for the email field
+                        autoComplete='off'
+                    />
+
+
 
                     {errors.email && (
-                        <FormHelperText className='alert_email' error>Please enter a valid email address</FormHelperText>
+                        <FormHelperText className='alert_email' error>{errors.email}</FormHelperText>
                     )}
 
                 </FormControl>
@@ -199,16 +288,28 @@ export default function Login() {
                     </FormLabel>
 
                     <OutlinedInput
-
-
+                        placeholder='Password'
                         className='login_email_filed'
                         name='password'
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
-                        startAdornment={
-                            <KeyIcon className='login_email_password' />
+                        // startAdornment={
+                        //     <KeyIcon className='login_email_password' />
 
+
+                        // }
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <Box className="login_input_bordar"
+
+
+                                    pr={1}
+                                >
+                                    <KeyIcon className='login_email_password' />
+                                </Box>
+                            </InputAdornment>
                         }
+                        autoComplete='off'
                         endAdornment={
                             <InputAdornment className='login_password_show' position="end">
                                 <IconButton
@@ -218,7 +319,7 @@ export default function Login() {
                                     onMouseDown={handleMouseDownPassword}
                                     edge="end">
 
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    {showPassword ? <Visibility /> : <VisibilityOff />}
                                 </IconButton>
                             </InputAdornment>
                         }
@@ -231,7 +332,7 @@ export default function Login() {
 
 
                     {errors.password && (
-                        <FormHelperText className='alert_password' error>Password should be at least 8 characters long</FormHelperText>
+                        <FormHelperText className='alert_password' error>{errors.password}</FormHelperText>
                     )}
 
                 </FormControl>

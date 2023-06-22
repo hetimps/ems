@@ -5,12 +5,16 @@ export const loginSlice = createSlice({
   initialState: {
 
     users: null,
+    userName:"",
     TableData : [],
 
   },
   reducers: {
     loginuser: (state, action) => {
       state.users = action.payload;
+    },
+    userName: (state, action) => {
+      state.userName = action.payload;
     },
 
     TableData: (state, action) => {
@@ -19,6 +23,6 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { loginuser,TableData } = loginSlice.actions;
+export const { loginuser,TableData,userName } = loginSlice.actions;
 
 export default loginSlice.reducer;

@@ -6,8 +6,31 @@ export const MainString = {
     login_button: "Login",
     dont_sign: "Don’t have an account",
     signUp_link: "Sign Up",
-    email_lable : "Email",
-    password_lable  : "Password"
+    email_lable: "Email",
+    password_lable: "Password"
 
 
 };
+
+export const Company = {
+    company: 'Company',
+    addCompany: 'Add Company',
+
+    code: "Code",
+    name: "Name",
+    link :"Link",
+    machines: "Machines",
+    area: "Area",
+    addLink: "Link",
+    frequency: "Frequency",
+    contact_no: "Contact Number",
+    remark: "Remark",
+    
+    cancelButton: "Cancel",
+    saveButton: "Save",
+
+
+    editButton: "Edit",
+    editCompany: "Edit Company"
+
+}

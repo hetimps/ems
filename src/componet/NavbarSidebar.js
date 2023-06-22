@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -10,19 +10,11 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-
 import { Avatar } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import Table from "./Table";
 import Logo from "../img/ems_company.png";
@@ -101,7 +93,7 @@ export default function NavbarSidebar() {
   const logout = () => {
     navigate("/login");
   };
-  const theme = useTheme();
+
 
   const [open, setOpen] = React.useState(true);
 
@@ -113,17 +105,23 @@ export default function NavbarSidebar() {
     setOpen(false);
   };
 
+
+  // get username
+  const username = JSON.parse(localStorage.getItem("usename"));
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
 
       {/* navbar */}
-      <AppBar
+      <AppBar className="appbar"
         position="fixed"
         open={open}
-        sx={{ boxShadow: "none", borderBottom: "1px solid rgb(220,220,220)" }}
+
       >
-        <Toolbar sx={{ backgroundColor: "white" }}>
+        <Toolbar className="appbar_toolbar"
+
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -138,17 +136,25 @@ export default function NavbarSidebar() {
             <MenuIcon onClick={handleDrawerOpen} />
           </IconButton>
 
-          <Box sx={{ marginLeft: "auto" }}>
+          <Box className="appbar_items"
+
+
+
+          >
             <IconButton>
               <Avatar alt="Remy Sharp" src="" />
             </IconButton>
             <IconButton>
-              <Typography variant="h6" component="div" sx={{ color: "black" }}>
-                User
+              <Typography variant="h6" component="div" className="appbar_username"
+
+              >
+                {username}
               </Typography>
             </IconButton>
             <IconButton onClick={logout}>
-              <LogoutIcon sx={{ color: "black" }} />
+              <LogoutIcon className="appbar_logout"
+
+              />
             </IconButton>
           </Box>
         </Toolbar>
@@ -158,39 +164,44 @@ export default function NavbarSidebar() {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <Toolbar
-            sx={{
-              backgroundColor: "white",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
+            className="drawer_appbar"
+
           >
-            <Box sx={{ width: "50%", height: "50%" }}>
+            <Box className="drawer_logo_box"
+
+            >
               <img
+                className="drawer_logo"
                 src={Logo}
                 alt="logo"
-                style={{ width: "100%", height: "100%" }}
+
               />
             </Box>
             <IconButton onClick={handleDrawerClose}>
-              <MenuIcon sx={{ color: "black" }} />
+
+              <MenuIcon className="drawer_icon"
+
+
+
+              />
+
             </IconButton>
           </Toolbar>
         </DrawerHeader>
 
         <Divider />
 
-        <Box
-          sx={{
-            backgroundColor: "#003B6E",
-            color: "white",
-            borderColor: "#E5E5E5",
-            height: "100vh",
-          }}
+        <Box className="drawer_menu_box"
+
         >
           <List>
             <ListItemButton>
               <ListItemIcon>
-                <ApartmentIcon sx={{ color: "#00B3FF" }} />
+                <ApartmentIcon
+                  className="drawer_menu_icon"
+                // sx={{ color: "#00B3FF" }}
+
+                />
               </ListItemIcon>
               <ListItemText primary="Company" />
             </ListItemButton>
@@ -199,7 +210,9 @@ export default function NavbarSidebar() {
       </Drawer>
 
       {/* table */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" className="table_box"
+
+      >
         <DrawerHeader />
         <Table />
       </Box>

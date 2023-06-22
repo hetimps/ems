@@ -11,7 +11,7 @@ function Router() {
           <Route path="/login" element={<Main />}></Route>
 
           <Route
-            path="/com"
+            path="/company"
             element={
               <PrivatePage>
                 <Company />
@@ -20,6 +20,7 @@ function Router() {
           ></Route>
           
           <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/login" />} />
 
         </Routes>
       </BrowserRouter>

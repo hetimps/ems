@@ -4,6 +4,7 @@ import { } from "@mui/icons-material"
 import Login from '../componet/Login'
 import Img from '../componet/Img'
 
+import '../sass/index.css'
 
 
 export default function Main() {
