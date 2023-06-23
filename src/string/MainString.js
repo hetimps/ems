@@ -31,6 +31,13 @@ export const Company = {
 
 
     editButton: "Edit",
-    editCompany: "Edit Company"
+    editCompany: "Edit Company",
+    not_found:"Oops ! result not found",
+
+    pops_tital : "Confirm Deletion",
+
+    pops_dec : "Are you sure you want to delete the selected rows",
+    pops_yes : "Yes",
+    pops_cancel :"Cancel",
 
 }

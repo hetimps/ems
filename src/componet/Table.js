@@ -832,7 +832,7 @@ export default function StickyHeadTable() {
                         {filteredRows.length === 0 ? (
                           <TableRow>
                             <TableCell colSpan={columns.length + 1}>
-                              <Alert severity="info">Oops !result not found</Alert>
+                              <Alert severity="info">{Company.not_found}</Alert>
                             </TableCell>
                           </TableRow>
                         ) : (
@@ -1467,7 +1467,7 @@ export default function StickyHeadTable() {
       {/* show pops in delte buttons */}
 
       <Dialog className="pops" open={openConfirmation} onClose={handleCloseConfirmation}>
-        <DialogTitle className="pops_tital">Confirm Deletion</DialogTitle>
+        <DialogTitle className="pops_tital">{Company.pops_tital}</DialogTitle>
         <DialogContent>
           <DialogContentText className="pops_info">
             Are you sure you want to delete the selected {selectedRowsCount} rows
@@ -1481,10 +1481,6 @@ export default function StickyHeadTable() {
         </DialogActions>
       </Dialog>
 
-
-
-
-      
 
     </>
 
